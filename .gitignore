@@ -1,0 +1,13 @@
+# Generated files (recreated automatically)
+*.vcd
+*_sim
+tictactoe_sim
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Backup files
+*.bak
+*~
