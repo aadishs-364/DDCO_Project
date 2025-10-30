@@ -28,6 +28,12 @@ module tictactoe (
 
     integer i, j;
 
+    // Initialize loop variables to avoid X states in simulation
+    initial begin
+        i = 0;
+        j = 0;
+    end
+
     // Initialize board on reset and update game state
     always @(posedge clk or negedge rst_n) begin
         if (!rst_n) begin
@@ -103,17 +109,18 @@ module tictactoe (
     function check_win;
         input [1:0] player;
         reg temp_winner;
+        integer x, y;  // Local loop variables
         begin
             temp_winner = 1'b0;
             // Check rows
-            for (i = 0; i < 3; i = i + 1) begin
-                if (unpacked_board[i][0] == player && unpacked_board[i][1] == player && unpacked_board[i][2] == player) begin
+            for (y = 0; y < 3; y = y + 1) begin
+                if (unpacked_board[y][0] == player && unpacked_board[y][1] == player && unpacked_board[y][2] == player) begin
                     temp_winner = 1'b1;
                 end
             end
             // Check columns
-            for (j = 0; j < 3; j = j + 1) begin
-                if (unpacked_board[0][j] == player && unpacked_board[1][j] == player && unpacked_board[2][j] == player) begin
+            for (x = 0; x < 3; x = x + 1) begin
+                if (unpacked_board[0][x] == player && unpacked_board[1][x] == player && unpacked_board[2][x] == player) begin
                     temp_winner = 1'b1;
                 end
             end
