@@ -60,7 +60,9 @@ module simple_tictactoe_tb;
 
     initial begin
         $dumpfile("tictactoe.vcd");
-        $dumpvars(0, simple_tictactoe_tb);
+        // Only dump level 1 signals (no function internals which are level 2+)
+        $dumpvars(1, simple_tictactoe_tb);
+        $dumpvars(1, mut);
         
         $display("========================================");
         $display("   INTERACTIVE TIC-TAC-TOE GAME");
