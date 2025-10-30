@@ -22,10 +22,11 @@ module simple_tictactoe_tb;
     reg [3:0] temp_x, temp_y;
     integer move_num;
 
-    // Initialize loop variables to avoid X states
+    // Initialize loop variables and file descriptor to avoid X states
     initial begin
         i = 0;
         j = 0;
+        input_file = 0;
     end
 
     tictactoe mut (
