@@ -22,6 +22,12 @@ module simple_tictactoe_tb;
     reg [3:0] temp_x, temp_y;
     integer move_num;
 
+    // Initialize loop variables to avoid X states
+    initial begin
+        i = 0;
+        j = 0;
+    end
+
     tictactoe mut (
         .clk(clk),
         .rst_n(rst_n),
@@ -60,8 +66,15 @@ module simple_tictactoe_tb;
         $display("========================================");
         $display("Reading moves from 'moves.txt'...\n");
 
-        // Initialize game
-        rst_n = 0; make_move = 0; x_in = 0; y_in = 0;
+        // Initialize all signals to avoid X states
+        rst_n = 0; 
+        make_move = 0; 
+        x_in = 4'b0000; 
+        y_in = 4'b0000;
+        temp_x = 4'b0000;
+        temp_y = 4'b0000;
+        move_num = 0;
+        scan_result = 0;
         #(CLK_PERIOD*2);
         rst_n = 1;
         #(CLK_PERIOD*2);
